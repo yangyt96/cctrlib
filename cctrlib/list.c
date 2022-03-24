@@ -19,12 +19,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
+#include <assert.h>
 #include "list.h"
 
 List_t *list_init(uint32_t dsize)
 {
     List_t *ret = (List_t *)malloc(sizeof(List_t));
+    assert(ret != NULL);
     ret->size = 0;
     ret->head = NULL;
     ret->tail = NULL;
@@ -34,18 +35,26 @@ List_t *list_init(uint32_t dsize)
 
 void *list_front(List_t *self)
 {
+    assert(self != NULL);
+    assert(self->head != NULL);
+    assert(self->head->data != NULL);
     return self->head->data;
 }
 
 void *list_back(List_t *self)
 {
+    assert(self != NULL);
+    assert(self->tail != NULL);
+    assert(self->tail->data != NULL);
     return self->tail->data;
 }
 
 void list_push_front(List_t *self, void *data)
 {
     List_Node_t *tmp = (List_Node_t *)calloc(sizeof(List_Node_t), 1);
+    assert(tmp != NULL);
     tmp->data = malloc(self->dsize);
+    assert(tmp->data != NULL);
     memcpy(tmp->data, data, self->dsize);
 
     if (self->head == NULL && self->tail == NULL)
@@ -66,7 +75,9 @@ void list_push_front(List_t *self, void *data)
 void list_push_back(List_t *self, void *data)
 {
     List_Node_t *tmp = (List_Node_t *)calloc(sizeof(List_Node_t), 1);
+    assert(tmp != NULL);
     tmp->data = malloc(self->dsize);
+    assert(tmp->data != NULL);
     memcpy(tmp->data, data, self->dsize);
 
     if (self->head == NULL && self->tail == NULL)
@@ -236,7 +247,9 @@ void list_insert(List_t *self, int32_t pos, void *data)
         return;
 
     List_Node_t *center = (List_Node_t *)calloc(sizeof(List_Node_t), 1);
+    assert(center != NULL);
     center->data = malloc(self->dsize);
+    assert(center->data != NULL);
     memcpy(center->data, data, self->dsize);
     center->prev = left;
     center->next = right;
