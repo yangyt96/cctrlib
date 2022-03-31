@@ -4,7 +4,7 @@ TARGET_EXEC:=main
 BUILD_DIR:=./build
 SRC_DIR:=./cctrlib
 TEST_DIR:=./test
-INCLUDE_DIRS:= .
+INCLUDE_DIRS:= ./ ./include/
 
 # files
 SRCS:=$(shell find $(SRC_DIR) -type f -iname '*.c')
