@@ -114,7 +114,10 @@ Xlist_t *xlist_copy(Xlist_t *self)
 /*
  * Basic Usage
  */
-inline Xlist_Node_t *_xlist_xor_ptr_(Xlist_Node_t *a, Xlist_Node_t *b){return (Xlist_Node_t *)((uintptr_t)a ^ (uintptr_t)b)};
+inline Xlist_Node_t *_xlist_xor_ptr_(Xlist_Node_t *a, Xlist_Node_t *b)
+{
+    return (Xlist_Node_t *)((uintptr_t)a ^ (uintptr_t)b);
+}
 void xlist_push_front(Xlist_t *self, void *data)
 {
     assert(self != NULL);
